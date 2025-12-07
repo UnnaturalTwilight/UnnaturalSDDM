@@ -173,7 +173,7 @@ File in `backgrounds/`
 <a href="#clockfontfamily">font-family</a>
 </td>
 <td align="center">string</td>
-<td align="center">RedHatDisplay</td>
+<td align="center">Noto Sans</td>
 <td align="left">
 
 
@@ -236,7 +236,7 @@ File in `backgrounds/`
 <a href="#datefontfamily">font-family</a>
 </td>
 <td align="center">string</td>
-<td align="center">RedHatDisplay</td>
+<td align="center">Noto Sans</td>
 <td align="left">
 
 
@@ -317,7 +317,7 @@ File in `backgrounds/`
 <a href="#lockmessagefontfamily">font-family</a>
 </td>
 <td align="center">string</td>
-<td align="center">RedHatDisplay</td>
+<td align="center">Noto Sans</td>
 <td align="left">
 
 
@@ -551,7 +551,7 @@ File in `backgrounds/`
 <a href="#usernamefontfamily">font-family</a>
 </td>
 <td align="center">string</td>
-<td align="center">RedHatDisplay</td>
+<td align="center">Noto Sans</td>
 <td align="left">
 
 
@@ -592,7 +592,7 @@ File in `backgrounds/`
 
 
 
-</td></tr><tr><td colspan="5">&nbsp;</td></tr><tr><th align="right">Category</th><th align="left">Option</th><th>Type</th><th>Default value</th><th align="left">Possible values</th></tr><tr><td rowspan="15" align="right"><a href="#loginscreenloginareapasswordinput">[LoginScreen.LoginArea.PasswordInput]</a></td><td align="left">
+</td></tr><tr><td colspan="5">&nbsp;</td></tr><tr><th align="right">Category</th><th align="left">Option</th><th>Type</th><th>Default value</th><th align="left">Possible values</th></tr><tr><td rowspan="16" align="right"><a href="#loginscreenloginareapasswordinput">[LoginScreen.LoginArea.PasswordInput]</a></td><td align="left">
 <a href="#passwordinputwidth">width</a>
 </td>
 <td align="center">int</td>
@@ -623,7 +623,7 @@ File in `backgrounds/`
 <a href="#passwordinputfontfamily">font-family</a>
 </td>
 <td align="center">string</td>
-<td align="center">RedHatDisplay</td>
+<td align="center">Noto Sans</td>
 <td align="left">
 
 
@@ -723,6 +723,15 @@ File in `icons/`
 </td>
 <td align="center">int</td>
 <td align="center">0</td>
+<td align="left">
+
+
+
+</td></tr><tr><td align="left">
+<a href="#passwordchar">char</a>
+</td>
+<td align="center">string</td>
+<td align="center">⏺</td>
 <td align="left">
 
 
@@ -866,7 +875,7 @@ File in `icons/`
 <a href="#loginbuttonfontfamily">font-family</a>
 </td>
 <td align="center">string</td>
-<td align="center">RedHatDisplay</td>
+<td align="center">Noto Sans</td>
 <td align="left">
 
 
@@ -911,7 +920,7 @@ File in `icons/`
 <a href="#spinnerfontfamily">font-family</a>
 </td>
 <td align="center">string</td>
-<td align="center">RedHatDisplay</td>
+<td align="center">Noto Sans</td>
 <td align="left">
 
 
@@ -974,7 +983,7 @@ File in `icons/`
 <a href="#warningmessagefontfamily">font-family</a>
 </td>
 <td align="center">string</td>
-<td align="center">RedHatDisplay</td>
+<td align="center">Noto Sans</td>
 <td align="left">
 
 
@@ -1100,7 +1109,7 @@ File in `icons/`
 <a href="#menuareabuttonsfontfamily">font-family</a>
 </td>
 <td align="center">string</td>
-<td align="center">RedHatDisplay</td>
+<td align="center">Noto Sans</td>
 <td align="left">
 
 
@@ -1217,7 +1226,7 @@ File in `icons/`
 <a href="#menuareapopupsfontfamily">font-family</a>
 </td>
 <td align="center">string</td>
-<td align="center">RedHatDisplay</td>
+<td align="center">Noto Sans</td>
 <td align="left">
 
 
@@ -1919,7 +1928,7 @@ File in `icons/`
 <a href="#tooltipsfontfamily">font-family</a>
 </td>
 <td align="center">string</td>
-<td align="center">RedHatDisplay</td>
+<td align="center">Noto Sans</td>
 <td align="left">
 
 
@@ -2428,7 +2437,7 @@ File in `backgrounds/`
 </tr>
 <tr>
 <td>Default value</td>
-<td>RedHatDisplay</td>
+<td>Noto Sans</td>
 </tr>
 <tr>
 <td>Possible values</td>
@@ -2586,7 +2595,7 @@ File in `backgrounds/`
 </tr>
 <tr>
 <td>Default value</td>
-<td>RedHatDisplay</td>
+<td>Noto Sans</td>
 </tr>
 <tr>
 <td>Possible values</td>
@@ -2788,7 +2797,7 @@ File in `backgrounds/`
 </tr>
 <tr>
 <td>Default value</td>
-<td>RedHatDisplay</td>
+<td>Noto Sans</td>
 </tr>
 <tr>
 <td>Possible values</td>
@@ -3376,7 +3385,7 @@ File in `backgrounds/`
 </tr>
 <tr>
 <td>Default value</td>
-<td>RedHatDisplay</td>
+<td>Noto Sans</td>
 </tr>
 <tr>
 <td>Possible values</td>
@@ -3556,7 +3565,7 @@ File in `backgrounds/`
 </tr>
 <tr>
 <td>Default value</td>
-<td>RedHatDisplay</td>
+<td>Noto Sans</td>
 </tr>
 <tr>
 <td>Possible values</td>
@@ -3799,6 +3808,28 @@ File in `icons/`
 <tr>
 <td>Default value</td>
 <td>0</td>
+</tr>
+<tr>
+<td>Possible values</td>
+<td>
+
+
+
+</td>
+</tr>
+</table>
+</details>
+<details name="passwordchar">
+<summary><strong>char</strong></summary><br/>
+<p>Char to appear as password is typed</p></br></br>
+<table>
+<tr>
+<td>Type</td></br>
+<td>string</td>
+</tr>
+<tr>
+<td>Default value</td>
+<td>⏺</td>
 </tr>
 <tr>
 <td>Possible values</td>
@@ -4154,7 +4185,7 @@ File in `icons/`
 </tr>
 <tr>
 <td>Default value</td>
-<td>RedHatDisplay</td>
+<td>Noto Sans</td>
 </tr>
 <tr>
 <td>Possible values</td>
@@ -4268,7 +4299,7 @@ File in `icons/`
 </tr>
 <tr>
 <td>Default value</td>
-<td>RedHatDisplay</td>
+<td>Noto Sans</td>
 </tr>
 <tr>
 <td>Possible values</td>
@@ -4426,7 +4457,7 @@ File in `icons/`
 </tr>
 <tr>
 <td>Default value</td>
-<td>RedHatDisplay</td>
+<td>Noto Sans</td>
 </tr>
 <tr>
 <td>Possible values</td>
@@ -4738,7 +4769,7 @@ File in `icons/`
 </tr>
 <tr>
 <td>Default value</td>
-<td>RedHatDisplay</td>
+<td>Noto Sans</td>
 </tr>
 <tr>
 <td>Possible values</td>
@@ -5028,7 +5059,7 @@ File in `icons/`
 </tr>
 <tr>
 <td>Default value</td>
-<td>RedHatDisplay</td>
+<td>Noto Sans</td>
 </tr>
 <tr>
 <td>Possible values</td>
@@ -6768,7 +6799,7 @@ File in `icons/`
 </tr>
 <tr>
 <td>Default value</td>
-<td>RedHatDisplay</td>
+<td>Noto Sans</td>
 </tr>
 <tr>
 <td>Possible values</td>

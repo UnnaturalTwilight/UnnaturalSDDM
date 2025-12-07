@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Controls
 import QtQuick.Layouts
 import SddmComponents
@@ -48,6 +49,7 @@ Item {
             loginMessage.warn(textConstants.promptUser || "Enter your user!", "error");
         }
     }
+    
     Connections {
         function onLoginSucceeded() {
             loginContainer.scale = 0.0;
@@ -123,8 +125,9 @@ Item {
                 }
             } else {
                 anchors.horizontalCenter = parent.horizontalCenter;
-                if (Config.loginAreaMargin === -1) {
-                    anchors.verticalCenter = parent.verticalCenter;
+                if (Config.loginAreaMargin < 0) {
+                    anchors.top = parent.verticalCenter;
+                    anchors.topMargin = Config.loginAreaMargin
                 } else {
                     anchors.top = parent.top;
                     anchors.topMargin = Config.loginAreaMargin;
@@ -196,7 +199,7 @@ Item {
 
         UserSelector {
             id: userSelector
-            listUsers: loginScreen.state === "selectingUser"
+            listUsers: true  //loginScreen.state === "selectingUser"
             enabled: loginScreen.state !== "authenticating"
             visible: true
             activeFocusOnTab: true
@@ -426,6 +429,109 @@ Item {
 
     MenuArea {}
     CVKeyboard {}
+
+    ColumnLayout {
+        id: timePositioner
+        spacing: Config.dateMarginTop
+        Text {
+            id: time
+            visible: Config.clockDisplay
+            font.pixelSize: Config.clockFontSize * Config.generalScale
+            font.weight: Config.clockFontWeight
+            font.family: Config.clockFontFamily
+            color: Config.clockColor
+            Layout.alignment: Config.clockAlign === "left" ? Qt.AlignLeft : (Config.clockAlign === "right" ? Qt.AlignRight : Qt.AlignHCenter)
+
+            function updateTime() {
+                text = new Date().toLocaleString(Qt.locale(Config.dateLocale), Config.clockFormat);
+            }
+        }
+
+        Text {
+            id: date
+            Layout.alignment: Config.clockAlign === "left" ? Qt.AlignLeft : (Config.clockAlign === "right" ? Qt.AlignRight : Qt.AlignHCenter)
+            visible: Config.dateDisplay
+            font.pixelSize: Config.dateFontSize * Config.generalScale
+            font.family: Config.dateFontFamily
+            font.weight: Config.dateFontWeight
+            color: Config.dateColor
+
+            function updateDate() {
+                text = new Date().toLocaleString(Qt.locale(Config.dateLocale), Config.dateFormat);
+            }
+        }
+
+        Timer {
+            id: clockTimer
+            interval: 1000
+            repeat: true
+            running: true
+            onTriggered: {
+                time.updateTime();
+                date.updateDate();
+            }
+        }
+
+        Component.onDestruction: {
+            if (clockTimer) {
+                clockTimer.stop();
+            }
+        }
+
+        anchors {
+            // FIX: Height calculation fixes - protect against zero division
+            topMargin: Config.lockScreenPaddingTop || (loginScreen.height > 0 ? loginScreen.height / 10 : 50)
+            rightMargin: Config.lockScreenPaddingRight || (loginScreen.height > 0 ? loginScreen.height / 10 : 50)
+            bottomMargin: Config.lockScreenPaddingBottom || (loginScreen.height > 0 ? loginScreen.height / 10 : 50)
+            leftMargin: Config.lockScreenPaddingLeft || (loginScreen.height > 0 ? loginScreen.height / 10 : 50)
+        }
+
+        Component.onCompleted: {
+            loginScreen.alignItem(timePositioner, Config.clockPosition);
+            time.updateTime();
+            date.updateDate();
+        }
+    }
+
+    function alignItem(item, pos) {
+        switch (pos) {
+        case "top-left":
+            item.anchors.top = loginScreen.top;
+            item.anchors.left = loginScreen.left;
+            break;
+        case "top-center":
+            item.anchors.top = loginScreen.top;
+            item.anchors.horizontalCenter = loginScreen.horizontalCenter;
+            break;
+        case "top-right":
+            item.anchors.top = loginScreen.top;
+            item.anchors.right = loginScreen.right;
+            break;
+        case "center-left":
+            item.anchors.verticalCenter = loginScreen.verticalCenter;
+            item.anchors.left = loginScreen.left;
+            break;
+        case "center":
+            item.anchors.verticalCenter = loginScreen.verticalCenter;
+            item.anchors.horizontalCenter = loginScreen.horizontalCenter;
+            break;
+        case "center-right":
+            item.anchors.verticalCenter = loginScreen.verticalCenter;
+            item.anchors.right = loginScreen.right;
+            break;
+        case "bottom-left":
+            item.anchors.bottom = loginScreen.bottom;
+            item.anchors.left = loginScreen.left;
+            break;
+        case "bottom-center":
+            item.anchors.bottom = loginScreen.bottom;
+            item.anchors.horizontalCenter = loginScreen.horizontalCenter;
+            break;
+        default:
+            item.anchors.bottom = loginScreen.bottom;
+            item.anchors.right = loginScreen.right;
+        }
+    }
 
     Keys.onPressed: function (event) {
         if (event.key === Qt.Key_Escape) {
