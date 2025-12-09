@@ -728,7 +728,7 @@ File in `icons/`
 
 
 </td></tr><tr><td align="left">
-<a href="#passwordchar">char</a>
+<a href="#passwordinputmaskedcharacter">masked-character</a>
 </td>
 <td align="center">string</td>
 <td align="center">⏺</td>
@@ -3813,36 +3813,15 @@ File in `icons/`
 <td>Possible values</td>
 <td>
 
+
+
 </td>
 </tr>
 </table>
 </details>
-<details name="passwordmaskedcharacter">
+<details name="passwordinputmaskedcharacter">
 <summary><strong>masked-character</strong></summary><br/>
-<p>Customized masked character of the password</p></br></br>
-<table>
-<tr>
-<td>Type</td></br>
-<td>string</td>
-</tr>
-<tr>
-<td>Default value</td>
-<td>●</td>
-</tr>
-<tr>
-<td>Possible values</td>
-<td>
-
-
-
-
-</td>
-</tr>
-</table>
-</details>
-<details name="passwordchar">
-<summary><strong>char</strong></summary><br/>
-<p>Char to appear as password is typed</p></br></br>
+<p>Customized masked character of the password.</p></br></br>
 <table>
 <tr>
 <td>Type</td></br>
