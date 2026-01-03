@@ -1,3 +1,7 @@
+This is my SDDM theme. It is based on [SilentSDDM](https://github.com/uiriansan/SilentSDDM)
+
+Orignal README Below
+***
 > [!WARNING]
 > This theme requires **SDDM v0.21.0 or newer**. Make sure your distro provides the correct version before installing.
 
