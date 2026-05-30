@@ -62,7 +62,6 @@ Item {
         target: sddm
     }
 
-    // FIX: Critical connections memory leak prevention?
     Component.onDestruction: {
         if (typeof connections !== 'undefined') {
             connections.target = null;
@@ -196,7 +195,7 @@ Item {
 
         UserSelector {
             id: userSelector
-            listUsers: true  //loginScreen.state === "selectingUser"
+            listUsers: loginScreen.state === "selectingUser" || Config.avatarAlwaysActive
             enabled: loginScreen.state !== "authenticating"
             visible: true
             activeFocusOnTab: true
@@ -551,12 +550,12 @@ Item {
         anchors.fill: parent
         hoverEnabled: true
         onClicked: {
-            if (loginScreen.state === "selectingUser") {
+            if (loginScreen.state === "selectingUser" && !Config.avatarAlwaysActive) {
                 safeStateChange("normal");
             }
         }
         onWheel: event => {
-            if (loginScreen.state === "selectingUser") {
+            if (loginScreen.state === "selectingUser" || Config.avatarAlwaysActive) {
                 if (event.angleDelta.y < 0) {
                     userSelector.nextUser();
                 } else {
