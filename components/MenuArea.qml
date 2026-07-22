@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Window
 import QtQuick.Controls
 
 Item {
@@ -12,7 +13,7 @@ Item {
             id: sessionButton
             showLabel: Config.sessionDisplaySessionName
             preferredWidth: showLabel ? (Config.sessionButtonWidth === -1 ? undefined : Config.sessionButtonWidth) : Config.menuAreaButtonsSize
-            height: Config.menuAreaButtonsSize * Config.generalScale
+            height: Config.menuAreaButtonsSize * Config.automaticScale(Screen.devicePixelRatio)
             iconSize: Config.sessionIconSize
             fontSize: Config.sessionFontSize
             enabled: loginScreen.state === "normal" || popup.visible
@@ -44,7 +45,7 @@ Item {
                 background: Rectangle {
                     color: Config.menuAreaPopupsBackgroundColor
                     opacity: Config.menuAreaPopupsBackgroundOpacity
-                    radius: Config.menuAreaButtonsBorderRadius * Config.generalScale
+                    radius: Config.menuAreaButtonsBorderRadius * Config.automaticScale(Screen.devicePixelRatio)
 
                     Rectangle {
                         anchors.fill: parent
@@ -53,7 +54,7 @@ Item {
                         color: "transparent"
                         border {
                             color: Config.menuAreaPopupsBorderColor
-                            width: Config.menuAreaPopupsBorderSize * Config.generalScale
+                            width: Config.menuAreaPopupsBorderSize * Config.automaticScale(Screen.devicePixelRatio)
                         }
                     }
                 }
@@ -103,8 +104,8 @@ Item {
         IconButton {
             id: powerButton
 
-            height: Config.menuAreaButtonsSize * Config.generalScale
-            width: Config.menuAreaButtonsSize * Config.generalScale
+            height: Config.menuAreaButtonsSize * Config.automaticScale(Screen.devicePixelRatio)
+            width: Config.menuAreaButtonsSize * Config.automaticScale(Screen.devicePixelRatio)
             icon: Config.getIcon(Config.powerIcon)
             iconSize: Config.powerIconSize
             contentColor: Config.powerContentColor
@@ -131,7 +132,7 @@ Item {
                 background: Rectangle {
                     color: Config.menuAreaPopupsBackgroundColor
                     opacity: Config.menuAreaPopupsBackgroundOpacity
-                    radius: Config.menuAreaButtonsBorderRadius * Config.generalScale
+                    radius: Config.menuAreaButtonsBorderRadius * Config.automaticScale(Screen.devicePixelRatio)
 
                     Rectangle {
                         anchors.fill: parent
@@ -140,7 +141,7 @@ Item {
                         color: "transparent"
                         border {
                             color: Config.menuAreaPopupsBorderColor
-                            width: Config.menuAreaPopupsBorderSize * Config.generalScale
+                            width: Config.menuAreaPopupsBorderSize * Config.automaticScale(Screen.devicePixelRatio)
                         }
                     }
                 }

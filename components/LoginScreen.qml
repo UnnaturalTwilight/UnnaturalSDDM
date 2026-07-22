@@ -1,5 +1,5 @@
 import QtQuick
-import QtQuick.Effects
+import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
 import SddmComponents
@@ -138,7 +138,7 @@ Item {
 
         Item {
             id: noUsersLoginArea
-            width: Config.passwordInputWidth * Config.generalScale + (loginButton.visible ? Config.passwordInputHeight * Config.generalScale + Config.loginButtonMarginLeft : 0)
+            width: Config.passwordInputWidth * Config.automaticScale(Screen.devicePixelRatio) + (loginButton.visible ? Config.passwordInputHeight * Config.automaticScale(Screen.devicePixelRatio) + Config.loginButtonMarginLeft : 0)
             height: childrenRect.height
             visible: false
 
@@ -160,7 +160,7 @@ Item {
                     }
                 }
                 color: Config.warningMessageErrorColor
-                font.pixelSize: Math.max(8, Config.passwordInputFontSize * Config.generalScale)
+                font.pixelSize: Math.max(8, Config.passwordInputFontSize * Config.automaticScale(Screen.devicePixelRatio))
                 font.family: Config.passwordInputFontFamily
             }
 
@@ -200,8 +200,8 @@ Item {
             visible: true
             activeFocusOnTab: true
             orientation: Config.loginAreaPosition === "left" || Config.loginAreaPosition === "right" ? "vertical" : "horizontal"
-            width: orientation === "horizontal" ? loginScreen.width - Config.loginAreaMargin * 2 : (Config.avatarActiveSize * Config.generalScale)
-            height: orientation === "horizontal" ? (Config.avatarActiveSize * Config.generalScale) : loginScreen.height - Config.loginAreaMargin * 2
+            width: orientation === "horizontal" ? loginScreen.width - Config.loginAreaMargin * 2 : (Config.avatarActiveSize * Config.automaticScale(Screen.devicePixelRatio))
+            height: orientation === "horizontal" ? (Config.avatarActiveSize * Config.automaticScale(Screen.devicePixelRatio)) : loginScreen.height - Config.loginAreaMargin * 2
             onOpenUserList: {
                 safeStateChange("selectingUser");
             }
@@ -263,7 +263,7 @@ Item {
                 id: activeUserName
                 font.family: Config.usernameFontFamily
                 font.weight: Config.usernameFontWeight
-                font.pixelSize: Config.usernameFontSize * Config.generalScale
+                font.pixelSize: Config.usernameFontSize * Config.automaticScale(Screen.devicePixelRatio)
                 color: Config.usernameColor
                 text: loginScreen.userRealName || loginScreen.userName || ""
                 visible: loginScreen.foundUsers
@@ -282,7 +282,7 @@ Item {
 
             RowLayout {
                 id: loginArea
-                height: Config.passwordInputHeight * Config.generalScale
+                height: Config.passwordInputHeight * Config.automaticScale(Screen.devicePixelRatio)
                 spacing: Config.loginButtonMarginLeft
                 visible: loginScreen.state !== "authenticating"
 
@@ -372,7 +372,7 @@ Item {
             Text {
                 id: loginMessage
                 property bool capslockWarning: false
-                font.pixelSize: Config.warningMessageFontSize * Config.generalScale
+                font.pixelSize: Config.warningMessageFontSize * Config.automaticScale(Screen.devicePixelRatio)
                 font.family: Config.warningMessageFontFamily
                 font.weight: Config.warningMessageFontWeight
                 color: Config.warningMessageNormalColor
