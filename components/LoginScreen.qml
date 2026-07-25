@@ -216,6 +216,17 @@ Item {
                     loginScreen.userRealName = realName;
                     loginScreen.userIcon = icon;
                     loginScreen.userNeedsPassword = needsPassword;
+
+                    const prefSession = Config.getUserOption(name, "preferred-session");
+
+                    if (prefSession) {
+                        for (var i = 0; i < sessionModel.count; ++i) {
+                            const sessionName = sessionModel.data(sessionModel.index(i, 0), 260).toLowerCase();
+                            if (sessionName === prefSession) {
+                                menuArea.customSessionIndex = i;
+                            }
+                        }
+                    }
                 }
             }
 
@@ -423,109 +434,8 @@ Item {
         }
     }
 
-    MenuArea {}
-
-    ColumnLayout {
-        id: timePositioner
-        spacing: Config.dateMarginTop
-        Text {
-            id: time
-            visible: Config.clockDisplay
-            font.pixelSize: Config.clockFontSize * Config.generalScale
-            font.weight: Config.clockFontWeight
-            font.family: Config.clockFontFamily
-            color: Config.clockColor
-            Layout.alignment: Config.clockAlign === "left" ? Qt.AlignLeft : (Config.clockAlign === "right" ? Qt.AlignRight : Qt.AlignHCenter)
-
-            function updateTime() {
-                text = new Date().toLocaleString(Qt.locale(Config.dateLocale), Config.clockFormat);
-            }
-        }
-
-        Text {
-            id: date
-            Layout.alignment: Config.clockAlign === "left" ? Qt.AlignLeft : (Config.clockAlign === "right" ? Qt.AlignRight : Qt.AlignHCenter)
-            visible: Config.dateDisplay
-            font.pixelSize: Config.dateFontSize * Config.generalScale
-            font.family: Config.dateFontFamily
-            font.weight: Config.dateFontWeight
-            color: Config.dateColor
-
-            function updateDate() {
-                text = new Date().toLocaleString(Qt.locale(Config.dateLocale), Config.dateFormat);
-            }
-        }
-
-        Timer {
-            id: clockTimer
-            interval: 1000
-            repeat: true
-            running: true
-            onTriggered: {
-                time.updateTime();
-                date.updateDate();
-            }
-        }
-
-        Component.onDestruction: {
-            if (clockTimer) {
-                clockTimer.stop();
-            }
-        }
-
-        anchors {
-            // FIX: Height calculation fixes - protect against zero division
-            topMargin: Config.lockScreenPaddingTop || (loginScreen.height > 0 ? loginScreen.height / 10 : 50)
-            rightMargin: Config.lockScreenPaddingRight || (loginScreen.height > 0 ? loginScreen.height / 10 : 50)
-            bottomMargin: Config.lockScreenPaddingBottom || (loginScreen.height > 0 ? loginScreen.height / 10 : 50)
-            leftMargin: Config.lockScreenPaddingLeft || (loginScreen.height > 0 ? loginScreen.height / 10 : 50)
-        }
-
-        Component.onCompleted: {
-            loginScreen.alignItem(timePositioner, Config.clockPosition);
-            time.updateTime();
-            date.updateDate();
-        }
-    }
-
-    function alignItem(item, pos) {
-        switch (pos) {
-        case "top-left":
-            item.anchors.top = loginScreen.top;
-            item.anchors.left = loginScreen.left;
-            break;
-        case "top-center":
-            item.anchors.top = loginScreen.top;
-            item.anchors.horizontalCenter = loginScreen.horizontalCenter;
-            break;
-        case "top-right":
-            item.anchors.top = loginScreen.top;
-            item.anchors.right = loginScreen.right;
-            break;
-        case "center-left":
-            item.anchors.verticalCenter = loginScreen.verticalCenter;
-            item.anchors.left = loginScreen.left;
-            break;
-        case "center":
-            item.anchors.verticalCenter = loginScreen.verticalCenter;
-            item.anchors.horizontalCenter = loginScreen.horizontalCenter;
-            break;
-        case "center-right":
-            item.anchors.verticalCenter = loginScreen.verticalCenter;
-            item.anchors.right = loginScreen.right;
-            break;
-        case "bottom-left":
-            item.anchors.bottom = loginScreen.bottom;
-            item.anchors.left = loginScreen.left;
-            break;
-        case "bottom-center":
-            item.anchors.bottom = loginScreen.bottom;
-            item.anchors.horizontalCenter = loginScreen.horizontalCenter;
-            break;
-        default:
-            item.anchors.bottom = loginScreen.bottom;
-            item.anchors.right = loginScreen.right;
-        }
+    MenuArea {
+        id: menuArea
     }
 
     Keys.onPressed: function (event) {

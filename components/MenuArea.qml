@@ -6,6 +6,8 @@ Item {
     id: menuArea
     anchors.fill: parent
 
+    property int customSessionIndex: -1
+
     Component {
         id: sessionMenuComponent
 
@@ -80,9 +82,12 @@ Item {
                 focus: visible
 
                 SessionSelector {
+                    id: sessionSelector
                     focus: popup.focus
+                    customSessionIndex: menuArea.customSessionIndex
                     onSessionChanged: function (newSessionIndex, sessionIcon, sessionLabel) {
-                        loginScreen.sessionIndex = newSessionIndex;
+                        if (loginScreen.sessionIndex !== newSessionIndex)
+                            loginScreen.sessionIndex = newSessionIndex;
                         sessionButton.icon = sessionIcon;
                         sessionButton.label = sessionButton.showLabel ? sessionLabel : "";
                     }
@@ -305,7 +310,6 @@ Item {
         }
     }
 
-    // FIX: Critical createObject memory leak prevention
     property var createdObjects: []
 
     Component.onCompleted: {
@@ -341,10 +345,11 @@ Item {
             }
 
             var createdObject;
-            if (menus[i].name === "session")
+            if (menus[i].name === "session") {
                 createdObject = sessionMenuComponent.createObject(pos, {});
-            else if (menus[i].name === "power")
+            } else if (menus[i].name === "power") {
                 createdObject = powerMenuComponent.createObject(pos, {});
+            }
 
             if (createdObject) {
                 createdObjects.push(createdObject);
@@ -353,7 +358,6 @@ Item {
     }
 
     Component.onDestruction: {
-        // FIX: Critical createObject memory leak cleanup
         for (var i = 0; i < createdObjects.length; i++) {
             if (createdObjects[i]) {
                 createdObjects[i].destroy();
