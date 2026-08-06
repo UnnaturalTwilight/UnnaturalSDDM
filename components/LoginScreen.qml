@@ -7,7 +7,6 @@ import SddmComponents
 Item {
     id: loginScreen
     signal close
-    signal toggleLayoutPopup
 
     state: "normal"
     property bool stateChanging: false
@@ -28,8 +27,6 @@ Item {
     readonly property alias loginButton: loginButton
     readonly property alias loginContainer: loginContainer
 
-    property bool showKeyboard: !Config.virtualKeyboardStartHidden
-
     property bool foundUsers: userModel.count > 0
 
     // Login info
@@ -49,7 +46,7 @@ Item {
             loginMessage.warn(textConstants.promptUser || "Enter your user!", "error");
         }
     }
-    
+
     Connections {
         function onLoginSucceeded() {
             loginContainer.scale = 0.0;
@@ -428,7 +425,6 @@ Item {
     }
 
     MenuArea {}
-    CVKeyboard {}
 
     ColumnLayout {
         id: timePositioner

@@ -14,7 +14,7 @@ Item {
     property bool splitBorderRadius: false
     property alias text: textField.text
     property string icon: ""
-    property bool enabled: true
+    override property bool enabled: true
 
     width: Config.passwordInputWidth * Config.generalScale
     height: Config.passwordInputHeight * Config.generalScale

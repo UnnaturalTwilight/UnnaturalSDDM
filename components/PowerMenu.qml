@@ -20,7 +20,6 @@ ColumnLayout {
         Layout.preferredWidth: Config.powerPopupWidth * Config.generalScale
 
         focus: selector.visible
-        width: Layout.preferredWidth
         enabled: sddm.canSuspend
         icon: Config.getIcon("power-suspend.svg")
         contentColor: Config.menuAreaPopupsContentColor
@@ -49,7 +48,6 @@ ColumnLayout {
         Layout.preferredWidth: Config.powerPopupWidth * Config.generalScale
 
         focus: selector.visible
-        width: Layout.preferredWidth
         enabled: sddm.canReboot
         icon: Config.getIcon("power-reboot.svg")
         contentColor: Config.menuAreaPopupsContentColor
@@ -78,7 +76,6 @@ ColumnLayout {
         Layout.preferredWidth: Config.powerPopupWidth * Config.generalScale
 
         focus: selector.visible
-        width: Layout.preferredWidth
         enabled: sddm.canPowerOff
         icon: Config.getIcon("power.svg")
         contentColor: Config.menuAreaPopupsContentColor

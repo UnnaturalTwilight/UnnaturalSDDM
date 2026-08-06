@@ -10,7 +10,6 @@ Version=1.4.0
 Theme-Id=silent
 Theme-API=2.0
 MainScript=Main.qml
-Screenshot=docs/previews/default.png
 TranslationsDirectory=translations
 QtVersion=6
 

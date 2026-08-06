@@ -42,16 +42,6 @@ There is a script included with the theme:
 ./change_avatar <username> <path_to_image_file>
 ```
 
-...or if you run NixOS:
-```nix
-systemd.tmpfiles.rules = let
-  user = "yourUserName";
-  iconPath = ./path/to/icon;
-in [
-  "f+ /var/lib/AccountsService/users/${user}  0600 root root -  [User]\\nIcon=/var/lib/AccountsService/icons/${user}\\n"
-  "L+ /var/lib/AccountsService/icons/${user}  -    -    -    -  ${iconPath}"
-];
-```
 This will set the image as the avatar for the user.
 
 # Extract frame from video
@@ -65,14 +55,14 @@ This will extract the first frame from the video and save it as an image in `./b
 # Fix segmentation fault on Nvidia GPU:
 If `./test.sh` seg faults, try running this instead:
 ```bash
-QT_IM_MODULE=qtvirtualkeyboard QML2_IMPORT_PATH=./components/ LIBVA_DRIVER_NAME= QT_MULTIMEDIA_PREFERRED_PLUGINS= sddm-greeter-qt6 --test-mode --theme .
+QML2_IMPORT_PATH=./components/ LIBVA_DRIVER_NAME= QT_MULTIMEDIA_PREFERRED_PLUGINS= sddm-greeter-qt6 --test-mode --theme .
 ```
 If it works, add `LIBVA_DRIVER_NAME=` and `QT_MULTIMEDIA_PREFERRED_PLUGINS=` to the `GreeterEnvironment` option in `/etc/sddm.conf` as well:
 ```bash
 sudoedit /etc/sddm.conf
 
     # Append `LIBVA_DRIVER_NAME=` and `QT_MULTIMEDIA_PREFERRED_PLUGINS=` to the end of the line:
-    GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard,LIBVA_DRIVER_NAME=,QT_MULTIMEDIA_PREFERRED_PLUGINS=
+    GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,LIBVA_DRIVER_NAME=,QT_MULTIMEDIA_PREFERRED_PLUGINS=
 ```
 
 # Fix theme not updating after changes or SDDM loading fallback theme with errors:
